@@ -7,19 +7,24 @@ import java.util.List;
 
 public interface IdentityGenerationService {
     /**
-     * @param identifier
-     * @param subChainId
      * @return
      */
-    List<String> GetUrl(String identifier, String subChainId);
+    List<String> getUrl(String identifier, String subChainId);
 
     /**
      * @return
      */
-    MainChainDto GetMainChainData(String subChainId);
+    String getIdentifier(String owner, String code);
 
     /**
      * @return
      */
-    SubChainDto GetSubChainData(String subChainId);
+    MainChainDto getMainChainData(String mainChainId, String owner);
+
+    /**
+     * @return
+     */
+    SubChainDto getSubChainData(String subChainId, String owner);
+
+
 }

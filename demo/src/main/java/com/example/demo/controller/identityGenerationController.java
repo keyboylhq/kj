@@ -14,32 +14,40 @@ import java.util.List;
 public class identityGenerationController {
     @Autowired
     IdentityGenerationService identityGenerationService;
-    // 接收前端数据标识，解析出结构化数据
 
     /**
-     * 查找url
+     * 获得url
      * @return
      */
-    @GetMapping("/parseIdentifier")
-    public List<String> parseIdentifier(String identifier, String subChainId) {
-        return identityGenerationService.GetUrl(identifier, subChainId);
+    @GetMapping("/getUrl")
+    public List<String> getUrl(String identifier, String subChainId) {
+        return identityGenerationService.getUrl(identifier, subChainId);
     }
 
     /**
-     * 请求主链数据
+     * 获得数据标识
+     * @return
+     */
+    @GetMapping("/getIdentify")
+    public String getIdentifier(String owner, String code) {
+        return identityGenerationService.getIdentifier(owner, code);
+    }
+
+    /**
+     * 通过主链ID或标识所有者请求主链数据
      * @return
      */
     @GetMapping("/MainChainData")
-    public MainChainDto getMainChainData(String subChainId) {
-        return identityGenerationService.GetMainChainData(subChainId);
+    public MainChainDto getMainChainData(String mainChainId, String owner) {
+        return identityGenerationService.getMainChainData(mainChainId, owner);
     }
 
     /**
-     * 请求子链数据
+     * 通过子链ID或标识所有者请求子链数据
      * @return
      */
     @GetMapping("/SubChainData")
-    public SubChainDto getSubChainData(String subChainId) {
-        return identityGenerationService.GetSubChainData(subChainId);
+    public SubChainDto getSubChainData(String subChainId, String owner) {
+        return identityGenerationService.getSubChainData(subChainId, owner);
     }
 }

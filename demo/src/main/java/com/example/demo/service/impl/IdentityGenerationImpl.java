@@ -8,17 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 public class IdentityGenerationImpl implements IdentityGenerationService {
-    @Autowired
-    IdentityGenerationService identityGenerationService;
-
     @Override
-    public List<String> GetUrl(String identifier, String subChainId) {
+    public List<String> getUrl(String identifier, String subChainId) {
         // 获取主链子链数据
-        MainChainDto mainChainDto = identityGenerationService.GetMainChainData(subChainId);
-        SubChainDto subChainDto = identityGenerationService.GetSubChainData(subChainId);
+        MainChainDto mainChainDto = getMainChainData(identifier, null);
+        SubChainDto subChainDto = getSubChainData(subChainId, null);
         // 查找url
         List<String> url = null;
-        if (mainChainDto.getKey().equals(identifier) && subChainDto.getKey().equals(subChainId)) {
+        if (mainChainDto.getParts().containsValue(subChainId) && subChainDto.getKey().equals(subChainId)) {
             for (int i = 0; i < subChainDto.getResource().size(); i++) {
                 url = subChainDto.getResource().get(i).getUrl();
             }
@@ -27,14 +24,22 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     }
 
     @Override
-    public MainChainDto GetMainChainData(String subChainId) {
-        MainChainDto mainChainDto = new MainChainDto();
-        return mainChainDto;
+    public String getIdentifier(String owner, String code) {
+        // 获取主链数据
+        SubChainDto subChainDto = getSubChainData(null, owner);
+        if (!subChainDto.getCode().equals(code)) {
+            return null;
+        }
+        return subChainDto.getKey();
     }
 
     @Override
-    public SubChainDto GetSubChainData(String subChainId) {
-        SubChainDto subChainDto = new SubChainDto();
-        return subChainDto;
+    public MainChainDto getMainChainData(String mainChainId, String owner) {
+        return new MainChainDto();
+    }
+
+    @Override
+    public SubChainDto getSubChainData(String subChainId, String owner) {
+        return new SubChainDto();
     }
 }
