@@ -3,6 +3,10 @@ package com.example.demo;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 1.4	主链数据模型示例
+ * */
+
 public class VehicleTraceVO {
     private String key;
     private String description;
