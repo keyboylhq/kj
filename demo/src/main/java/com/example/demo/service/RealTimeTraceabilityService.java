@@ -19,17 +19,17 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    String getDirectParentComponentKey(String childKey);
+    String getDirectParentComponentKey(String childKey, String tokenId);
 
     /**
      * @return
      */
-    MainChainTraceDto getMainChainTraceData(String tokenId);
+    MainChainTraceDto getMainChainTraceData(String parentKey, String tokenId);
 
     /**
      * @return
      */
-    SubChainTraceDto getSubChainTraceData(String tokenId);
+    SubChainTraceDto getSubChainTraceData(String childKey, String tokenId);
 
 
 }

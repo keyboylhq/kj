@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 public class SubChainTraceDto {
+    private String childKey;
     private String tokenId;
 
     private Time time;
@@ -26,6 +27,14 @@ public class SubChainTraceDto {
     private String superviseRule;
 
     private String traceRule;
+
+    public String getChildKey() {
+        return childKey;
+    }
+
+    public void setChildKey(String childKey) {
+        this.childKey = childKey;
+    }
 
     public String getTokenId() {
         return tokenId;
@@ -117,8 +126,9 @@ public class SubChainTraceDto {
 
     @Override
     public String toString() {
-        return "SubChainVo{" +
-                "tokenId='" + tokenId + '\'' +
+        return "SubChainTraceDto{" +
+                "childKey='" + childKey + '\'' +
+                ", tokenId='" + tokenId + '\'' +
                 ", time=" + time +
                 ", index='" + index + '\'' +
                 ", description='" + description + '\'' +

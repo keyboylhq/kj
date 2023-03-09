@@ -38,8 +38,8 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getDirectParentComponentKey")
-    public String getDirectParentComponentKey(String childKey, String type) {
-        return realTimeTraceabilityService.getDirectParentComponentKey(childKey);
+    public String getDirectParentComponentKey(String childKey, String tokenId) {
+        return realTimeTraceabilityService.getDirectParentComponentKey(childKey, tokenId);
     }
 
     /**
@@ -47,8 +47,8 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getMainChainTraceData")
-    public MainChainTraceDto getMainChainTraceData(String tokenId) {
-        return realTimeTraceabilityService.getMainChainTraceData(tokenId);
+    public MainChainTraceDto getMainChainTraceData(String parentKey, String tokenId) {
+        return realTimeTraceabilityService.getMainChainTraceData(parentKey, tokenId);
     }
 
     /**
@@ -56,7 +56,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getSubChainTraceData")
-    public SubChainTraceDto getSubChainTraceData(String tokenId) {
-        return realTimeTraceabilityService.getSubChainTraceData(tokenId);
+    public SubChainTraceDto getSubChainTraceData(String childKey, String tokenId) {
+        return realTimeTraceabilityService.getSubChainTraceData(childKey, tokenId);
     }
 }

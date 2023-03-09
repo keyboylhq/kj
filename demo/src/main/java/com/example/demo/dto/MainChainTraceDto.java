@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 public class MainChainTraceDto {
+    private String parentKey;
     private String tokenId;
 
     private String description;
@@ -19,6 +20,14 @@ public class MainChainTraceDto {
     private List<Map<String, String>> transfer;
 
     private List<Map<String, String>> sale;
+
+    public String getParentKey() {
+        return parentKey;
+    }
+
+    public void setParentKey(String parentKey) {
+        this.parentKey = parentKey;
+    }
 
     public String getTokenId() {
         return tokenId;
@@ -87,7 +96,8 @@ public class MainChainTraceDto {
     @Override
     public String toString() {
         return "MainChainTraceDto{" +
-                "tokenId='" + tokenId + '\'' +
+                "parentKey='" + parentKey + '\'' +
+                ", tokenId='" + tokenId + '\'' +
                 ", description='" + description + '\'' +
                 ", index=" + index +
                 ", owner='" + owner + '\'' +
