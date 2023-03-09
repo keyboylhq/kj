@@ -9,7 +9,17 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    List<String> generateKey(String mainKey);
+    List<String> getAllDirectChildComponentKey(String parentKey);
+
+    /**
+     * @return
+     */
+    List<String> getDirectChildComponentKey(String parentKey, String type);
+
+    /**
+     * @return
+     */
+    String getDirectParentComponentKey(String childKey);
 
     /**
      * @return
@@ -20,4 +30,6 @@ public interface RealTimeTraceabilityService {
      * @return
      */
     SubChainTraceDto getSubChainTraceData(String tokenId);
+
+
 }

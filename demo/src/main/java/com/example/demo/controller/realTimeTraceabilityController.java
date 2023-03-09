@@ -16,12 +16,30 @@ public class realTimeTraceabilityController {
     RealTimeTraceabilityService realTimeTraceabilityService;
 
     /**
-     * 获取所有直接子键key
+     * 获取所有直接子件key
      * @return
      */
-    @GetMapping("/getAllDirectSubChainKey")
-    public List<String> getAllDirectSubChainKey(String mainKey) {
-        return realTimeTraceabilityService.generateKey(mainKey);
+    @GetMapping("/getAllDirectSubComponentKey")
+    public List<String> getAllDirectChildComponentKey(String parentKey) {
+        return realTimeTraceabilityService.getAllDirectChildComponentKey(parentKey);
+    }
+
+    /**
+     * 获取直接子件key
+     * @return
+     */
+    @GetMapping("/getDirectSubComponentKey")
+    public List<String> getDirectChildComponentKey(String parentKey, String type) {
+        return realTimeTraceabilityService.getDirectChildComponentKey(parentKey, type);
+    }
+
+    /**
+     * 获取直接母件key
+     * @return
+     */
+    @GetMapping("/getDirectParentComponentKey")
+    public String getDirectParentComponentKey(String childKey, String type) {
+        return realTimeTraceabilityService.getDirectParentComponentKey(childKey);
     }
 
     /**
@@ -29,7 +47,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getMainChainTraceData")
-    public MainChainTraceDto getMainChainData(String tokenId) {
+    public MainChainTraceDto getMainChainTraceData(String tokenId) {
         return realTimeTraceabilityService.getMainChainTraceData(tokenId);
     }
 
@@ -38,7 +56,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getSubChainTraceData")
-    public SubChainTraceDto getSubChainData(String tokenId) {
+    public SubChainTraceDto getSubChainTraceData(String tokenId) {
         return realTimeTraceabilityService.getSubChainTraceData(tokenId);
     }
 }
