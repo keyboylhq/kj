@@ -59,7 +59,7 @@ public class identityGenerationController {
      * 通过主链ID或标识所有者请求主链数据
      * @return
      */
-    @GetMapping("/MainChainData")
+    @GetMapping("/getMainChainData")
     public MainChainDto getMainChainData(String mainChainId, String owner) {
         return identityGenerationService.getMainChainData(mainChainId, owner);
     }
@@ -68,7 +68,7 @@ public class identityGenerationController {
      * 通过子链ID或标识所有者请求子链数据
      * @return
      */
-    @GetMapping("/SubChainData")
+    @GetMapping("/getSubChainData")
     public SubChainDto getSubChainData(String subChainId, String owner) {
         return identityGenerationService.getSubChainData(subChainId, owner);
     }
