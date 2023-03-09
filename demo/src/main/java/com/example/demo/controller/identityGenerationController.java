@@ -7,21 +7,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 
 @RequestMapping("identityGeneration")
 public class identityGenerationController {
+
     @Autowired
     IdentityGenerationService identityGenerationService;
 
     /**
-     * 获得url
+     * 生成数据标识 key
+     * @return
+     */
+    @GetMapping("/generateKey")
+    public String generateKey(String owner, String code) throws NoSuchAlgorithmException {
+        return identityGenerationService.generateKey(owner, code);
+    }
+
+    /**
+     * 在主链上查找key所在的子链ID
+     *
+     * @return
+     */
+    @GetMapping("/getChainId")
+    public String getChainId(String mainChain, String key) {
+        return identityGenerationService.getChainId(mainChain, key);
+    }
+
+    /**
+     * 在子链上查找key详细信息的url
      * @return
      */
     @GetMapping("/getUrl")
-    public List<String> getUrl(String identifier, String subChainId) {
-        return identityGenerationService.getUrl(identifier, subChainId);
+    public List<String> getUrl(String key, String chainId) {
+        return identityGenerationService.getUrl(key, chainId);
     }
 
     /**

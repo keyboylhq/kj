@@ -1,5 +1,6 @@
 package com.example.demo.dto;
 
+import java.util.List;
 import java.util.Map;
 
 // 区块链主链
@@ -12,7 +13,7 @@ public class MainChainDto {
 
     private String owner;
 
-    private Map<String, String> parts;
+    private Map<String, List<String>> parts;
 
     public String getKey() {
         return key;
@@ -46,11 +47,11 @@ public class MainChainDto {
         this.owner = owner;
     }
 
-    public Map<String, String> getParts() {
+    public Map<String, List<String>> getParts() {
         return parts;
     }
 
-    public void setParts(Map<String, String> parts) {
+    public void setParts(Map<String, List<String>> parts) {
         this.parts = parts;
     }
 
