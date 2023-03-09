@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
-@RequestMapping("identityGeneration")
+@RequestMapping("/realTimeTraceability")
 public class realTimeTraceabilityController {
 
     @Autowired
