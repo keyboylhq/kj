@@ -4,6 +4,7 @@ import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -11,6 +12,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.Map;
 
+@Service
 public class IdentityGenerationImpl implements IdentityGenerationService {
 
     @Override
