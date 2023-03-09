@@ -25,11 +25,6 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
-    String getIdentifier(String owner, String code);
-
-    /**
-     * @return
-     */
     MainChainDto getMainChainData(String mainChainId, String owner);
 
     /**

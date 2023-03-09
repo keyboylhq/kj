@@ -56,16 +56,6 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     }
 
     @Override
-    public String getIdentifier(String owner, String code) {
-        // 获取子链数据
-        SubChainDto subChainDto = getSubChainData(null, owner);
-        if (!subChainDto.getCode().equals(code)) {
-            return null;
-        }
-        return subChainDto.getKey();
-    }
-
-    @Override
     public MainChainDto getMainChainData(String mainChainId, String owner) {
         return new MainChainDto();
     }

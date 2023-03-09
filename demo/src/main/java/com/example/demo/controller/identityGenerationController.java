@@ -47,15 +47,6 @@ public class identityGenerationController {
     }
 
     /**
-     * 获得数据标识
-     * @return
-     */
-    @GetMapping("/getIdentify")
-    public String getIdentifier(String owner, String code) {
-        return identityGenerationService.getIdentifier(owner, code);
-    }
-
-    /**
      * 通过主链ID或标识所有者请求主链数据
      * @return
      */
