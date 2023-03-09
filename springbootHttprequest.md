@@ -9,7 +9,7 @@
 1. 在Spring Boot中添加RestTemplate的依赖：
 
    ```java
-   xmlCopy code<dependency>
+   <dependency>
        <groupId>org.springframework.boot</groupId>
        <artifactId>spring-boot-starter-web</artifactId>
    </dependency>
@@ -18,7 +18,6 @@
 2. 在Java代码中创建RestTemplate对象：
 
    ```java
-   javaCopy code
    RestTemplate restTemplate = new RestTemplate();
    ```
 
