@@ -10,56 +10,56 @@ import java.util.Map;
 public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
 
     @Override
-    public List<String> getAllDirectChildComponentKey(String parentKey) {
-        MainChainTraceDto mainChainTraceData = getMainChainTraceData(parentKey,null);
-        List<String> allDirectSubKeyList = null;
-        if (mainChainTraceData.getTokenId().equals(parentKey)) {
+    public List<String> getAllDirectChildComponentKey(String parentComponentKey) {
+        MainChainTraceDto mainChainTraceData = getMainChainTraceData(parentComponentKey,null);
+        List<String> allDirectSubComponentKeyList = null;
+        if (mainChainTraceData.getTokenId().equals(parentComponentKey)) {
             for (int i = 0; i < mainChainTraceData.getIndex().size(); i++) {
                 for (Map.Entry<String, String> entry : mainChainTraceData.getIndex().get(i).entrySet()) {
-                    allDirectSubKeyList.add(entry.getValue());
+                    allDirectSubComponentKeyList.add(entry.getValue());
                 }
             }
         }
-        return allDirectSubKeyList;
+        return allDirectSubComponentKeyList;
     }
 
     @Override
-    public List<String> getDirectChildComponentKey(String parentKey, String type) {
-        MainChainTraceDto mainChainTraceData = getMainChainTraceData(parentKey,null);
-        List<String> directSubKeyList = null;
-        if (mainChainTraceData.getTokenId().equals(parentKey)) {
+    public List<String> getDirectChildComponentKey(String parentComponentKey, String type) {
+        MainChainTraceDto mainChainTraceData = getMainChainTraceData(parentComponentKey,null);
+        List<String> directSubComponentKeyList = null;
+        if (mainChainTraceData.getTokenId().equals(parentComponentKey)) {
             for (int i = 0; i < mainChainTraceData.getIndex().size(); i++) {
                 for (Map.Entry<String, String> entry : mainChainTraceData.getIndex().get(i).entrySet()) {
                     if (entry.getKey().equals(type)) {
-                        directSubKeyList.add(entry.getValue());
+                        directSubComponentKeyList.add(entry.getValue());
                     }
                 }
             }
         }
-        return directSubKeyList;
+        return directSubComponentKeyList;
     }
 
     @Override
-    public String getDirectParentComponentKey(String childKey, String tokenId) {
+    public String getDirectParentComponentKey(String childComponentKey, String tokenId) {
         MainChainTraceDto mainChainTraceData = getMainChainTraceData(null, tokenId);
-        String parentComponentKey = null;
+        String directParentComponentKey = null;
         for (int i = 0; i < mainChainTraceData.getIndex().size(); i++) {
             for (Map.Entry<String, String> entry : mainChainTraceData.getIndex().get(i).entrySet()) {
-                if (entry.getValue().contains(childKey)) {
-                    parentComponentKey = mainChainTraceData.getParentKey();
+                if (entry.getValue().contains(childComponentKey)) {
+                    directParentComponentKey = mainChainTraceData.getParentKey();
                 }
             }
         }
-        return parentComponentKey;
+        return directParentComponentKey;
     }
 
     @Override
-    public MainChainTraceDto getMainChainTraceData(String parentKey, String tokenId) {
+    public MainChainTraceDto getMainChainTraceData(String parentComponentKey, String tokenId) {
         return new MainChainTraceDto();
     }
 
     @Override
-    public SubChainTraceDto getSubChainTraceData(String childKey, String tokenId) {
+    public SubChainTraceDto getSubChainTraceData(String childComponentKey, String tokenId) {
         return new SubChainTraceDto();
     }
 }
