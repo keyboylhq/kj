@@ -6,6 +6,7 @@ import java.util.Map;
 
 public class SubChainTraceDto {
     private String childKey;
+
     private String tokenId;
 
     private Time time;

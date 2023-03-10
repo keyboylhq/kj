@@ -4,6 +4,7 @@ import com.example.demo.dto.MainChainTraceDto;
 import com.example.demo.dto.SubChainTraceDto;
 
 import java.util.List;
+import java.util.Map;
 
 public interface RealTimeTraceabilityService {
     /**
@@ -24,12 +25,16 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
+    Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String type);
+
+    /**
+     * @return
+     */
     MainChainTraceDto getMainChainTraceData(String parentComponentKey, String tokenId);
 
     /**
      * @return
      */
     SubChainTraceDto getSubChainTraceData(String childComponentKey, String tokenId);
-
 
 }

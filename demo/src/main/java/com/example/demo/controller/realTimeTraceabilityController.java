@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("/realTimeTraceability")
 public class realTimeTraceabilityController {
@@ -40,6 +41,15 @@ public class realTimeTraceabilityController {
     @GetMapping("/getDirectParentComponentKey")
     public String getDirectParentComponentKey(String childComponentKey, String tokenId) {
         return realTimeTraceabilityService.getDirectParentComponentKey(childComponentKey, tokenId);
+    }
+
+    /**
+     * 获取间接子件Key
+     * @return
+     */
+    @GetMapping("/getIndirectChildComponentKey")
+    public Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String type) {
+        return realTimeTraceabilityService.getIndirectChildComponentKey(parentComponentKey, type);
     }
 
     /**
