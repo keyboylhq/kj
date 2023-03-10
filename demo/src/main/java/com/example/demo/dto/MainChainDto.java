@@ -5,14 +5,22 @@ import java.util.Map;
 
 // 区块链主链
 public class MainChainDto {
+    // 子链上Owner+Code字段对应的哈希
     private String key;
 
+    // 数据说明
     private String description;
 
+    // unix时间戳
     private Integer time;
 
+    // 该条记录的所有者
     private String owner;
 
+    // 该条数据存储在哪条子链上
+    private String chainId;
+
+    // 该记录的组成信息
     private Map<String, List<String>> parts;
 
     public String getKey() {
@@ -47,6 +55,14 @@ public class MainChainDto {
         this.owner = owner;
     }
 
+    public String getChainId() {
+        return chainId;
+    }
+
+    public void setChainId(String chainId) {
+        this.chainId = chainId;
+    }
+
     public Map<String, List<String>> getParts() {
         return parts;
     }
@@ -62,6 +78,7 @@ public class MainChainDto {
                 ", description='" + description + '\'' +
                 ", time=" + time +
                 ", owner='" + owner + '\'' +
+                ", chainId='" + chainId + '\'' +
                 ", parts=" + parts +
                 '}';
     }

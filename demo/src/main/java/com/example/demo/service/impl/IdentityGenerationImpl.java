@@ -30,21 +30,15 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     }
 
     @Override
-    public String getChainId(String mainChain, String key) {
-        MainChainDto mainChainData = getMainChainData(mainChain, null);
-        String chainId = null;
-        for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
-            if (entry.getValue().contains(key)) {
-                chainId = entry.getKey();
-            }
-        }
-        return chainId;
+    public String getChainId(String key) {
+        MainChainDto mainChainData = getMainChainData(key);
+        return mainChainData.getChainId();
     }
 
     @Override
     public List<String> getUrl(String key, String chainId) {
         // 获取子链数据
-        SubChainDto subChainDto = getSubChainData(chainId, null);
+        SubChainDto subChainDto = getSubChainData(key);
         // 查找url
         List<String> url = null;
         if (subChainDto.getKey().equals(key)) {
@@ -56,12 +50,12 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     }
 
     @Override
-    public MainChainDto getMainChainData(String mainChainId, String owner) {
+    public MainChainDto getMainChainData(String key) {
         return new MainChainDto();
     }
 
     @Override
-    public SubChainDto getSubChainData(String subChainId, String owner) {
+    public SubChainDto getSubChainData(String key) {
         return new SubChainDto();
     }
 }
