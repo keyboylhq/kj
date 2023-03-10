@@ -5,18 +5,25 @@ import java.util.List;
 
 // 区块链子链下的Resource
 public class Resource {
+    // 单条链下的资源记录的类别
     private String type;
 
+    // 单条链下记录对应的资源存储地址
     private String url;
 
+    // 数据说明
     private String description;
 
+    // 单条链下资源的哈希值
     private String digest;
 
+    // 监管者字段，用于标识拥有操作权限的监管者
     private String supervisor;
 
+    // 监管规则信息
     private String superviseRule;
 
+    // 追溯规则信息
     private String traceRule;
 
     public String getType() {

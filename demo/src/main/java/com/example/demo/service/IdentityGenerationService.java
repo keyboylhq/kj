@@ -15,7 +15,7 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
-    String getChainId(String mainChain, String key);
+    String getChainId(String key);
 
     /**
      * @return
@@ -25,12 +25,12 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
-    MainChainDto getMainChainData(String mainChainId, String owner);
+    MainChainDto getMainChainData(String key);
 
     /**
      * @return
      */
-    SubChainDto getSubChainData(String subChainId, String owner);
+    SubChainDto getSubChainData(String key);
 
 
 }

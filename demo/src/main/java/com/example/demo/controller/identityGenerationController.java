@@ -33,8 +33,8 @@ public class identityGenerationController {
      * @return
      */
     @GetMapping("/getChainId")
-    public String getChainId(String mainChain, String key) {
-        return identityGenerationService.getChainId(mainChain, key);
+    public String getChainId(String key) {
+        return identityGenerationService.getChainId(key);
     }
 
     /**
@@ -51,8 +51,8 @@ public class identityGenerationController {
      * @return
      */
     @GetMapping("/getMainChainData")
-    public MainChainDto getMainChainData(String mainChainId, String owner) {
-        return identityGenerationService.getMainChainData(mainChainId, owner);
+    public MainChainDto getMainChainData(String key) {
+        return identityGenerationService.getMainChainData(key);
     }
 
     /**
@@ -60,7 +60,7 @@ public class identityGenerationController {
      * @return
      */
     @GetMapping("/getSubChainData")
-    public SubChainDto getSubChainData(String subChainId, String owner) {
-        return identityGenerationService.getSubChainData(subChainId, owner);
+    public SubChainDto getSubChainData(String key) {
+        return identityGenerationService.getSubChainData(key);
     }
 }

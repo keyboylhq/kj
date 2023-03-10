@@ -30,8 +30,8 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getDirectSubComponentKey")
-    public List<String> getDirectChildComponentKey(String parentComponentKey, String type) {
-        return realTimeTraceabilityService.getDirectChildComponentKey(parentComponentKey, type);
+    public List<String> getDirectChildComponentKey(String parentComponentKey, String childComponentType) {
+        return realTimeTraceabilityService.getDirectChildComponentKey(parentComponentKey, childComponentType);
     }
 
     /**
@@ -48,8 +48,17 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getIndirectChildComponentKey")
-    public Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String type) {
-        return realTimeTraceabilityService.getIndirectChildComponentKey(parentComponentKey, type);
+    public Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String childComponentType) {
+        return realTimeTraceabilityService.getIndirectChildComponentKey(parentComponentKey, childComponentType);
+    }
+
+    /**
+     * 获取间接母件Key
+     * @return
+     */
+    @GetMapping("/getIndirectParentComponentKey")
+    public Map<String, String> getIndirectParentComponentKey(String childComponentKey, String parentComponentType) {
+        return realTimeTraceabilityService.getIndirectParentComponentKey(childComponentKey, parentComponentType);
     }
 
     /**
