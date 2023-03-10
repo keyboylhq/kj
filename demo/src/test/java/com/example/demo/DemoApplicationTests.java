@@ -3,6 +3,11 @@ package com.example.demo;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -47,6 +52,30 @@ class DemoApplicationTests {
         Gson gson = new Gson();
         String json = gson.toJson(vehicleTraceVO);
         System.out.println(json);
+    }
+
+    @Test
+    void AAA(){
+        try {
+            URL url = new URL("http://lhqpj.gcuweb.cn:5000/mainchain");
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+
+//            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            String responseString = response.toString();
+            String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
+            System.out.println(decodedString);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
