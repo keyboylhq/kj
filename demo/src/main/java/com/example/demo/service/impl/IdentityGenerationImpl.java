@@ -4,6 +4,7 @@ import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -74,9 +75,9 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
             in.close();
             String responseString = response.toString();
             String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
-            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
-            ObjectMapper mapper = new ObjectMapper();
-            dto = mapper.readValue(decodedString, MainChainDto.class);
+            System.out.println(decodedString);
+            Gson gson = new Gson();
+            dto = gson.fromJson(responseString, MainChainDto.class);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -100,9 +101,9 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
             in.close();
             String responseString = response.toString();
             String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
-            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
-            ObjectMapper mapper = new ObjectMapper();
-            dto = mapper.readValue(decodedString, SubChainDto.class);
+            System.out.println(decodedString);
+            Gson gson = new Gson();
+            dto = gson.fromJson(responseString, SubChainDto.class);
         } catch (Exception e) {
             e.printStackTrace();
         }

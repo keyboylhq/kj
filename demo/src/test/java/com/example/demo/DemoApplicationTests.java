@@ -15,8 +15,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import com.google.gson.Gson;
-
 @SpringBootTest
 class DemoApplicationTests {
 
@@ -74,13 +72,9 @@ class DemoApplicationTests {
                 response.append(inputLine);
             }
             in.close();
-
             String responseString = response.toString();
             String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
             System.out.println(decodedString);
-            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
-//            ObjectMapper mapper = new ObjectMapper();
-//            MainChainDto dto = mapper.readValue(decodedString, MainChainDto.class);
             Gson gson = new Gson();
             MainChainDto responseDTO = gson.fromJson(responseString, MainChainDto.class);
             System.out.println(responseDTO);
