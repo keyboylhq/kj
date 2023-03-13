@@ -3,14 +3,17 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
-import java.util.Map;
 
 @Service
 public class IdentityGenerationImpl implements IdentityGenerationService {
@@ -31,9 +34,14 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 
     @Override
     public String getChainId(String key) {
+        return null;
+    }
+
+    /*@Override
+    public String getChainId(String key) {
         MainChainDto mainChainData = getMainChainData(key);
         return mainChainData.getChainId();
-    }
+    }*/
 
     @Override
     public List<String> getUrl(String key, String chainId) {
@@ -51,11 +59,53 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 
     @Override
     public MainChainDto getMainChainData(String key) {
-        return new MainChainDto();
+        MainChainDto dto = new MainChainDto();
+        try {
+            String path = "http://lhqpj.gcuweb.cn:5000/mainchain?key=" + key;
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            String responseString = response.toString();
+            String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
+            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
+            ObjectMapper mapper = new ObjectMapper();
+            dto = mapper.readValue(decodedString, MainChainDto.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 
     @Override
     public SubChainDto getSubChainData(String key) {
-        return new SubChainDto();
+        SubChainDto dto = new SubChainDto();
+        try {
+            String path = "http://lhqpj.gcuweb.cn:5000/subchain?key=" + key;
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            String responseString = response.toString();
+            String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
+            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
+            ObjectMapper mapper = new ObjectMapper();
+            dto = mapper.readValue(decodedString, SubChainDto.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
     }
 }

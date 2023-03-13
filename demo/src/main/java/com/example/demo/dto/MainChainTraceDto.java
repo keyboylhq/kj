@@ -93,18 +93,5 @@ public class MainChainTraceDto {
         this.sale = sale;
     }
 
-    @Override
-    public String toString() {
-        return "MainChainTraceDto{" +
-                "parentKey='" + parentKey + '\'' +
-                ", tokenId='" + tokenId + '\'' +
-                ", description='" + description + '\'' +
-                ", index=" + index +
-                ", owner='" + owner + '\'' +
-                ", supply=" + supply +
-                ", manufacture=" + manufacture +
-                ", transfer=" + transfer +
-                ", sale=" + sale +
-                '}';
-    }
+
 }

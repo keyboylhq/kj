@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import com.example.demo.dto.MainChainDto;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -12,15 +14,16 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import com.google.gson.Gson;
+
+//import com.google.gson.Gson;
 
 @SpringBootTest
 class DemoApplicationTests {
 
 
     /**
-    * 1.4	主链数据模型示例
-    * */
+     * 1.4	主链数据模型示例
+     */
     @Test
     void contextLoads() {
 
@@ -49,15 +52,17 @@ class DemoApplicationTests {
 
         vehicleTraceVO.setParts(parts);
 
-        Gson gson = new Gson();
-        String json = gson.toJson(vehicleTraceVO);
-        System.out.println(json);
+//        Gson gson = new Gson();
+//        String json = gson.toJson(vehicleTraceVO);
+//        System.out.println(json);
     }
 
     @Test
-    void AAA(){
+    void qqq() {
         try {
-            URL url = new URL("http://lhqpj.gcuweb.cn:5000/mainchain");
+            String key = "4564321234";
+            String path = "http://lhqpj.gcuweb.cn:5000/mainchain?key=" + key;
+            URL url = new URL(path);
             HttpURLConnection conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
 
@@ -69,13 +74,20 @@ class DemoApplicationTests {
                 response.append(inputLine);
             }
             in.close();
+
             String responseString = response.toString();
             String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
             System.out.println(decodedString);
+            // 假设已经通过 HTTP 请求获取到了 JSON 数据并保存在了 response 中
+//            ObjectMapper mapper = new ObjectMapper();
+//            MainChainDto dto = mapper.readValue(decodedString, MainChainDto.class);
+            Gson gson = new Gson();
+            MainChainDto responseDTO = gson.fromJson(responseString, MainChainDto.class);
+            System.out.println(responseDTO);
+            System.out.println(responseDTO.getChainId());
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-
 }

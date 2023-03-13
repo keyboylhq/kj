@@ -18,7 +18,7 @@ public class MainChainDto {
     private String owner;
 
     // 该条数据存储在哪条子链上
-    private String chainId;
+    private String ChainId;
 
     // 该记录的组成信息
     private Map<String, List<String>> parts;
@@ -56,11 +56,11 @@ public class MainChainDto {
     }
 
     public String getChainId() {
-        return chainId;
+        return ChainId;
     }
 
     public void setChainId(String chainId) {
-        this.chainId = chainId;
+        this.ChainId = chainId;
     }
 
     public Map<String, List<String>> getParts() {
@@ -78,7 +78,7 @@ public class MainChainDto {
                 ", description='" + description + '\'' +
                 ", time=" + time +
                 ", owner='" + owner + '\'' +
-                ", chainId='" + chainId + '\'' +
+                ", chainId='" + ChainId + '\'' +
                 ", parts=" + parts +
                 '}';
     }
