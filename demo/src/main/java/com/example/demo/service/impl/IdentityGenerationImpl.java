@@ -15,6 +15,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class IdentityGenerationImpl implements IdentityGenerationService {
@@ -35,14 +36,9 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 
     @Override
     public String getChainId(String key) {
-        return null;
-    }
-
-    /*@Override
-    public String getChainId(String key) {
         MainChainDto mainChainData = getMainChainData(key);
         return mainChainData.getChainId();
-    }*/
+    }
 
     @Override
     public List<String> getUrl(String key, String chainId) {
@@ -108,5 +104,40 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
             e.printStackTrace();
         }
         return dto;
+    }
+
+    @Override
+    public List<String> getUrlByOwnerCode(String owner, String code) {
+        String key = owner + code;
+        MessageDigest digest;
+        List<String> url = null;
+        try {
+            digest = MessageDigest.getInstance("SHA-256");
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        byte[] hashBytes = digest.digest(key.getBytes(StandardCharsets.UTF_8));
+        StringBuilder hexString = new StringBuilder();
+        for (byte b : hashBytes) {
+            String hex = Integer.toHexString(0xff & b);
+            if (hex.length() == 1) hexString.append('0');
+            hexString.append(hex);
+        }
+        MainChainDto mainChainData = getMainChainData(String.valueOf(hexString));
+        List<String> urlList = null;
+        for (int i = 0; i < mainChainData.getParts().size(); i++) {
+            for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
+                for (int j = 0; j < mainChainData.getParts().values().size(); j++) {
+                        urlList.add(entry.getValue().get(j));
+                }
+            }
+        }
+        for (String str : urlList) {
+            SubChainDto subChainData = getSubChainData(str);
+            for (int i = 0; i < subChainData.getResource().size(); i++) {
+                url = subChainData.getResource().get(i).getUrl();
+            }
+        }
+        return url;
     }
 }

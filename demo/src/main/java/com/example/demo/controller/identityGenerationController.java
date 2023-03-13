@@ -47,6 +47,15 @@ public class identityGenerationController {
     }
 
     /**
+     * 整合功能(通过owner+code查找url)
+     * @return
+     */
+    @GetMapping("/getUrl")
+    public List<String> getUrlByOwnerCode(String owner, String code) {
+        return identityGenerationService.getUrlByOwnerCode(owner, code);
+    }
+
+    /**
      * 通过主链ID或标识所有者请求主链数据
      * @return
      */

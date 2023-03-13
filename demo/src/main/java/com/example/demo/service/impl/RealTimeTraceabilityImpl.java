@@ -32,18 +32,20 @@ public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
 
     @Override
     public List<String> getDirectChildComponentKey(String parentComponentKey, String childComponentType) {
-        MainChainTraceDto mainChainTraceData = getMainChainTraceData(parentComponentKey,null);
-        List<String> directSubComponentKeyList = null;
-        if (mainChainTraceData.getTokenId().equals(parentComponentKey)) {
-            for (int i = 0; i < mainChainTraceData.getIndex().size(); i++) {
-                for (Map.Entry<String, String> entry : mainChainTraceData.getIndex().get(i).entrySet()) {
-                    if (entry.getKey().equals(childComponentType)) {
-                        directSubComponentKeyList.add(entry.getValue());
+        MainChainDto mainChainData = identityGeneration.getMainChainData(parentComponentKey);
+        List<String> DirectSubComponentKeyList = null;
+        if (mainChainData.getKey().equals(parentComponentKey)) {
+            for (int i = 0; i < mainChainData.getParts().size(); i++) {
+                for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
+                    for (int j = 0; j < mainChainData.getParts().values().size(); j++) {
+                        if (entry.getKey().equals(childComponentType)) {
+                            DirectSubComponentKeyList.add(entry.getValue().get(j));
+                        }
                     }
                 }
             }
         }
-        return directSubComponentKeyList;
+        return DirectSubComponentKeyList;
     }
 
     @Override

@@ -33,4 +33,5 @@ public interface IdentityGenerationService {
     SubChainDto getSubChainData(String key);
 
 
+    List<String> getUrlByOwnerCode(String owner, String code);
 }
