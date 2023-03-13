@@ -40,7 +40,7 @@ public class identityGenerationController {
      * 在子链上查找key详细信息的url
      * @return
      */
-    @GetMapping("/getUrl1")
+    @GetMapping("/getUrl")
     public List<String> getUrl(String key, String chainId) {
         return identityGenerationService.getUrl(key, chainId);
     }
@@ -49,7 +49,7 @@ public class identityGenerationController {
      * 整合功能(通过owner+code查找url)
      * @return
      */
-    @GetMapping("/getUrl")
+    @GetMapping("/getUrlByOwnerCode")
     public List<String> getUrlByOwnerCode(String owner, String code) {
         return identityGenerationService.getUrlByOwnerCode(owner, code);
     }
