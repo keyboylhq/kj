@@ -40,7 +40,7 @@ public class identityGenerationController {
      * 在子链上查找key详细信息的url
      * @return
      */
-    @GetMapping("/getUrl")
+    @GetMapping("/getUrl1")
     public List<String> getUrl(String key, String chainId) {
         return identityGenerationService.getUrl(key, chainId);
     }

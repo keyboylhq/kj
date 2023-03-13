@@ -5,10 +5,13 @@ import com.example.demo.dto.MainChainTraceDto;
 import com.example.demo.dto.SubChainTraceDto;
 import com.example.demo.service.RealTimeTraceabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+
+@Service
 public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
 
     @Autowired
