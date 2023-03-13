@@ -29,7 +29,6 @@ public class identityGenerationController {
 
     /**
      * 在主链上查找key所在的子链ID
-     *
      * @return
      */
     @GetMapping("/getChainId")

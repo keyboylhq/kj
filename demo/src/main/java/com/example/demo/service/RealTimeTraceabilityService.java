@@ -2,10 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.dto.MainChainTraceDto;
 import com.example.demo.dto.SubChainTraceDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 
+@Service
 public interface RealTimeTraceabilityService {
     /**
      * @return
@@ -20,7 +22,7 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    String getDirectParentComponentKey(String childComponentKey, String tokenId);
+    String getDirectParentComponentKey(String childComponentKey);
 
     /**
      * @return

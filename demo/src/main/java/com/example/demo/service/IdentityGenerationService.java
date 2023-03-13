@@ -2,10 +2,12 @@ package com.example.demo.service;
 
 import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
+import org.springframework.stereotype.Service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
+@Service
 public interface IdentityGenerationService {
     /**
      * @return

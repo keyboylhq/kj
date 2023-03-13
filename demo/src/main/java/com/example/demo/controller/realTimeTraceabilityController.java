@@ -6,10 +6,12 @@ import com.example.demo.service.RealTimeTraceabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 import java.util.Map;
 
+@RestController
 @RequestMapping("/realTimeTraceability")
 public class realTimeTraceabilityController {
 
@@ -39,8 +41,8 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getDirectParentComponentKey")
-    public String getDirectParentComponentKey(String childComponentKey, String tokenId) {
-        return realTimeTraceabilityService.getDirectParentComponentKey(childComponentKey, tokenId);
+    public String getDirectParentComponentKey(String childComponentKey) {
+        return realTimeTraceabilityService.getDirectParentComponentKey(childComponentKey);
     }
 
     /**

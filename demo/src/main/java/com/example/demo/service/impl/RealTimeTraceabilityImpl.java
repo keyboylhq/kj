@@ -49,8 +49,8 @@ public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
     }
 
     @Override
-    public String getDirectParentComponentKey(String childComponentKey, String tokenId) {
-        MainChainTraceDto mainChainTraceData = getMainChainTraceData(null, tokenId);
+    public String getDirectParentComponentKey(String childComponentKey) {
+        MainChainTraceDto mainChainTraceData = getMainChainTraceData(null,null);
         String directParentComponentKey = null;
         for (int i = 0; i < mainChainTraceData.getIndex().size(); i++) {
             for (Map.Entry<String, String> entry : mainChainTraceData.getIndex().get(i).entrySet()) {
