@@ -50,7 +50,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getIndirectChildComponentKey")
-    public Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String childComponentType) {
+    public List<String> getIndirectChildComponentKey(String parentComponentKey, String childComponentType) {
         return realTimeTraceabilityService.getIndirectChildComponentKey(parentComponentKey, childComponentType);
     }
 

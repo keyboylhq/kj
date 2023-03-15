@@ -27,13 +27,15 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
+    List<String> getUrlByOwnerCode(String owner, String code);
+
+    /**
+     * @return
+     */
     MainChainDto getMainChainData(String key);
 
     /**
      * @return
      */
     SubChainDto getSubChainData(String key);
-
-
-    List<String> getUrlByOwnerCode(String owner, String code);
 }

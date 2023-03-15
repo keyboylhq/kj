@@ -3,7 +3,6 @@ package com.example.demo.service.impl;
 import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.springframework.stereotype.Service;
 
@@ -128,7 +127,7 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
         for (int i = 0; i < mainChainData.getParts().size(); i++) {
             for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
                 for (int j = 0; j < mainChainData.getParts().values().size(); j++) {
-                        urlList.add(entry.getValue().get(j));
+                    urlList.add(entry.getValue().get(j));
                 }
             }
         }

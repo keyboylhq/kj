@@ -27,7 +27,7 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    Map<String, String> getIndirectChildComponentKey(String parentComponentKey, String childComponentType);
+    List<String> getIndirectChildComponentKey(String parentComponentKey, String childComponentType);
 
     /**
      * @return
