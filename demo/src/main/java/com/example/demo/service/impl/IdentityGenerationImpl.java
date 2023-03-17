@@ -1,5 +1,6 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.dto.IndexDto;
 import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
@@ -19,6 +20,7 @@ import java.util.Map;
 @Service
 public class IdentityGenerationImpl implements IdentityGenerationService {
 
+    // 功能1:通过Owner+Code生成对应的key
     @Override
     public String generateKey(String owner, String code) throws NoSuchAlgorithmException {
         String key = owner + code;
@@ -33,12 +35,14 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
         return hexString.toString();
     }
 
+    // 功能2:在主链上查找key所在的子链ID
     @Override
     public String getChainId(String key) {
         MainChainDto mainChainData = getMainChainData(key);
         return mainChainData.getChainId();
     }
 
+    // 功能3:在子链上查找key详细信息的URL
     @Override
     public List<String> getUrl(String key, String chainId) {
         // 获取子链数据
@@ -53,6 +57,7 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
         return url;
     }
 
+    // 携带key发送http请求获取主链数据
     @Override
     public MainChainDto getMainChainData(String key) {
         MainChainDto dto = new MainChainDto();
@@ -79,6 +84,7 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
         return dto;
     }
 
+    // 携带key发送http请求获取子链数据
     @Override
     public SubChainDto getSubChainData(String key) {
         SubChainDto dto = new SubChainDto();
@@ -105,6 +111,34 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
         return dto;
     }
 
+    // 携带子链key发送http请求获取索引信息数据
+    @Override
+    public IndexDto getIndexData(String key) {
+        IndexDto dto = new IndexDto();
+        try {
+            String path = "http://lhqpj.gcuweb.cn:5000/index?key=" + key;
+            URL url = new URL(path);
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream(), "UTF-8"));
+            String inputLine;
+            StringBuffer response = new StringBuffer();
+            while ((inputLine = in.readLine()) != null) {
+                response.append(inputLine);
+            }
+            in.close();
+            String responseString = response.toString();
+            String decodedString = java.net.URLDecoder.decode(responseString, StandardCharsets.UTF_8.name());
+            System.out.println(decodedString);
+            Gson gson = new Gson();
+            dto = gson.fromJson(responseString, IndexDto.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return dto;
+    }
+
+    // 构件一功能总成
     @Override
     public List<String> getUrlByOwnerCode(String owner, String code) {
         String key = owner + code;

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.IndexDto;
 import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import org.springframework.stereotype.Service;
@@ -38,4 +39,9 @@ public interface IdentityGenerationService {
      * @return
      */
     SubChainDto getSubChainData(String key);
+
+    /**
+     * @return
+     */
+    IndexDto getIndexData(String key);
 }

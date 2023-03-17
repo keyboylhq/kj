@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.dto.MainChainTraceDto;
-import com.example.demo.dto.SubChainTraceDto;
 import com.example.demo.service.RealTimeTraceabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,7 +39,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getDirectParentComponentKey")
-    public String getDirectParentComponentKey(String childComponentKey) {
+    public List<String> getDirectParentComponentKey(String childComponentKey) {
         return realTimeTraceabilityService.getDirectParentComponentKey(childComponentKey);
     }
 
@@ -59,25 +57,16 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getIndirectParentComponentKey")
-    public Map<String, String> getIndirectParentComponentKey(String childComponentKey, String parentComponentType) {
+    public List<String> getIndirectParentComponentKey(String childComponentKey, String parentComponentType) {
         return realTimeTraceabilityService.getIndirectParentComponentKey(childComponentKey, parentComponentType);
     }
 
     /**
-     * 通过追溯凭证tokenId请求主链追溯凭证
+     * 获取Owner某时间段同种产品品类的Key集合
      * @return
      */
-    @GetMapping("/getMainChainTraceData")
-    public MainChainTraceDto getMainChainTraceData(String parentComponentKey, String tokenId) {
-        return realTimeTraceabilityService.getMainChainTraceData(parentComponentKey, tokenId);
-    }
-
-    /**
-     * 通过追溯凭证tokenId请求子链追溯凭证
-     * @return
-     */
-    @GetMapping("/getSubChainTraceData")
-    public SubChainTraceDto getSubChainTraceData(String childComponentKey, String tokenId) {
-        return realTimeTraceabilityService.getSubChainTraceData(childComponentKey, tokenId);
+    @GetMapping("/getKey")
+    public List<String> getKeyList(String owner, String parentComponentType, String startTime, String endTime) {
+        return realTimeTraceabilityService.getKeyList(owner, parentComponentType, startTime, endTime);
     }
 }
