@@ -83,6 +83,7 @@ public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
                     indirectChildComponentKey.addAll(getIndirectChildComponentKey(key, childComponentType));
                 }
             }
+            directChildComponentKey = getDirectChildComponentKey(key, childComponentType);
         }
         return indirectChildComponentKey;
     }
