@@ -5,8 +5,9 @@ import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
-import java.util.List;
+import java.util.Map;
 
 @Service
 public interface IdentityGenerationService {
@@ -18,17 +19,17 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
-    String getChainId(String key);
+    Map<String, Object> getChainId(String key) throws UnsupportedEncodingException;
 
     /**
      * @return
      */
-    List<String> getUrl(String key, String chainId);
+    Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException;
 
     /**
      * @return
      */
-    List<String> getUrlByOwnerCode(String owner, String code);
+    Map<String, String> getUrlByOwnerCode(String owner, String code) throws NoSuchAlgorithmException, UnsupportedEncodingException;
 
     /**
      * @return
