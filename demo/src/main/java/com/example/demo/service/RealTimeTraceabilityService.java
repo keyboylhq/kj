@@ -2,14 +2,16 @@ package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    List<String> getAllDirectChildComponentKey(String parentComponentKey);
+    Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException;
 
     /**
      * @return

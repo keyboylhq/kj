@@ -6,10 +6,10 @@ import com.example.demo.service.RealTimeTraceabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 
 
 @Service
@@ -20,15 +20,19 @@ public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
 
     // 功能1:获取所有直接子件key
     @Override
-    public List<String> getAllDirectChildComponentKey(String parentComponentKey) {
-        MainChainDto mainChainData = identityGeneration.getMainChainData(parentComponentKey);
-        List<String> allDirectSubComponentKeyList = new ArrayList<>();
-        for (int i = 0; i < mainChainData.getParts().size(); i++) {
-            for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
-                Objects.requireNonNull(allDirectSubComponentKeyList).addAll(entry.getValue());
-            }
-        }
-        return allDirectSubComponentKeyList;
+    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException {
+
+        CouchDBExample couchDBExampl = new CouchDBExample();
+        Map<String, Object> allurl = couchDBExampl.geturlfun(parentComponentKey);
+        return  allurl;
+//        MainChainDto mainChainData = identityGeneration.getMainChainData(parentComponentKey);
+//        List<String> allDirectSubComponentKeyList = new ArrayList<>();
+//        for (int i = 0; i < mainChainData.getParts().size(); i++) {
+//            for (Map.Entry<String, List<String>> entry : mainChainData.getParts().entrySet()) {
+//                Objects.requireNonNull(allDirectSubComponentKeyList).addAll(entry.getValue());
+//            }
+//        }
+//        return allDirectSubComponentKeyList;
     }
 
     // 功能2:获取直接子件key(带子件品类筛选)

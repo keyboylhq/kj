@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -18,10 +19,11 @@ public class realTimeTraceabilityController {
 
     /**
      * 获取所有直接子件key
+     *
      * @return
      */
     @GetMapping("/getAllDirectSubComponentKey")
-    public List<String> getAllDirectChildComponentKey(String parentComponentKey) {
+    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException {
         return realTimeTraceabilityService.getAllDirectChildComponentKey(parentComponentKey);
     }
 
