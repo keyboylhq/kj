@@ -1,12 +1,15 @@
 package com.example.demo;
 
 import com.example.demo.dto.MainChainDto;
+import com.example.demo.service.impl.CouchDBExample;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -17,8 +20,8 @@ import java.util.Map;
 
 @SpringBootTest
 class DemoApplicationTests {
-
-
+    @Autowired
+    CouchDBExample CouchDBExample;
     /**
      * 1.4	主链数据模型示例
      */
@@ -83,5 +86,12 @@ class DemoApplicationTests {
             e.printStackTrace();
         }
 
+    }
+
+    @Test
+    void dd() throws UnsupportedEncodingException {
+
+        Map<String, Object> stringObjectMap = CouchDBExample.binaryTreealgorithm("83a86d7ea0295798b4ad57765a35d36b5e1bc301295f208974d7886da079209b");
+        System.out.println(stringObjectMap);
     }
 }

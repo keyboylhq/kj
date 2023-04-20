@@ -6,6 +6,7 @@ import com.example.demo.dto.SubChainDto;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
@@ -19,17 +20,17 @@ public interface IdentityGenerationService {
     /**
      * @return
      */
-    Map<String, Object> getChainId(String key) throws UnsupportedEncodingException;
+    Map<String, Object> getChainId(String key) throws UnsupportedEncodingException, MalformedURLException;
 
     /**
      * @return
      */
-    Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException;
+    Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException, MalformedURLException;
 
     /**
      * @return
      */
-    Map<String, String> getUrlByOwnerCode(String owner, String code) throws NoSuchAlgorithmException, UnsupportedEncodingException;
+    Map<String, String> getUrlByOwnerCode(String owner, String code) throws NoSuchAlgorithmException, UnsupportedEncodingException, MalformedURLException;
 
     /**
      * @return

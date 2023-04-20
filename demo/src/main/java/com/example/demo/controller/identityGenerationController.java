@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
 
@@ -35,7 +36,7 @@ public class identityGenerationController {
      * @return
      */
     @GetMapping("/getChainId")
-    public Map<String, Object> getChainId(String key) throws UnsupportedEncodingException {
+    public Map<String, Object> getChainId(String key) throws UnsupportedEncodingException, MalformedURLException {
         return identityGenerationService.getChainId(key);
     }
 
@@ -46,6 +47,7 @@ public class identityGenerationController {
      */
     @GetMapping("/getUrl")
     public Map<String, String> getUrl(String key, String chainId) throws IOException {
+//        return identityGenerationService.getUrl(key, chainId);
         return identityGenerationService.getUrl(key, chainId);
     }
 
@@ -55,7 +57,7 @@ public class identityGenerationController {
      * @return
      */
     @GetMapping("/getUrlByOwnerCode")
-    public Map<String, String> getUrlByOwnerCode(String owner, String code) throws UnsupportedEncodingException, NoSuchAlgorithmException {
+    public Map<String, String> getUrlByOwnerCode(String owner, String code) throws UnsupportedEncodingException, NoSuchAlgorithmException, MalformedURLException {
         return identityGenerationService.getUrlByOwnerCode(owner, code);
     }
 

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +24,7 @@ public class realTimeTraceabilityController {
      * @return
      */
     @GetMapping("/getAllDirectSubComponentKey")
-    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException {
+    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException, MalformedURLException {
         return realTimeTraceabilityService.getAllDirectChildComponentKey(parentComponentKey);
     }
 

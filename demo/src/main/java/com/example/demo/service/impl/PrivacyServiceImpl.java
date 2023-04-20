@@ -14,7 +14,15 @@ public class PrivacyServiceImpl implements PrivacyService {
   @Override
   public AuthorizationResponse authorize(AuthorizationRequest request) {
     AuthorizationResponse authorizationResponse = new AuthorizationResponse();
-    authorizationResponse.setAuthorizationProof("111");
+    if (request.getCompanyId().equals("1") ) {
+      authorizationResponse.setAuthorized(true);
+      authorizationResponse.setAuthorizationProof("12321321aerqwrqwe");
+    }
+    else {
+      authorizationResponse.setAuthorized(false);
+
+    }
+
     // 实现多监管者授权功能
     return authorizationResponse ;
   }
@@ -23,15 +31,23 @@ public class PrivacyServiceImpl implements PrivacyService {
   public EncryptionResponse encrypt(EncryptionRequest request) {
     // 实现数据属性加密功能
     EncryptionResponse encryptionResponse = new EncryptionResponse();
-    encryptionResponse.setEncryptedData("111");
+    encryptionResponse.setEncryptedData("11111111");
     return encryptionResponse ;
   }
   
   @Override
   public TraceResponse trace(TraceRequest request) {
-    // 实现监管溯源请求功能
     TraceResponse traceResponse = new TraceResponse();
-    traceResponse.setTraceResult("111");
+    traceResponse.setRegulatorId(request.getRegulatorId());
+    if (request.getRegulatorId().equals("regulatorId") & request.getAttributeCertificate().equals("attributeCertificate")) {
+      traceResponse.setAllowed(true);
+    }else {
+      traceResponse.setAllowed(false);
+
+    }
+    // 实现监管溯源请求功能
+
+
     return traceResponse;
   }
 }

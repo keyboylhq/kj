@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +21,7 @@ public class RealTimeTraceabilityImpl implements RealTimeTraceabilityService {
 
     // 功能1:获取所有直接子件key
     @Override
-    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException {
+    public Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws MalformedURLException, UnsupportedEncodingException {
 
         CouchDBExample couchDBExampl = new CouchDBExample();
         Map<String, Object> allurl = couchDBExampl.geturlfun(parentComponentKey);

@@ -12,6 +12,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -41,9 +42,12 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 
     // 功能2:在主链上查找key所在的子链ID
     @Override
-    public Map<String, Object> getChainId(String key) throws UnsupportedEncodingException {
+    public Map<String, Object> getChainId(String key) throws UnsupportedEncodingException, MalformedURLException {
         CouchDBExample couchDBExampl = new CouchDBExample();
-        Map<String, Object> allurl = couchDBExampl.geturlfun(key);
+//      直接子件
+//        Map<String, Object> allurl = couchDBExampl.geturlfun(key);
+//        间接子件
+        Map<String, Object> allurl = couchDBExampl.binaryTreealgorithm(key);
         return  allurl;
 //        MainChainDto mainChainData = getMainChainData(key);
 //        return mainChainData.getChainId();
@@ -51,7 +55,7 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 
     // 功能3:在子链上查找key详细信息的URL
     @Override
-    public Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException {
+    public Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException, MalformedURLException {
 
         CouchDBExample couchDBExampl = new CouchDBExample();
         Map<String, Object> allurl = couchDBExampl.geturlfun(key);
@@ -171,7 +175,7 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     // 构件一功能总成
 
     @Override
-    public Map<String, String> getUrlByOwnerCode(String owner, String code) throws NoSuchAlgorithmException, UnsupportedEncodingException {
+    public Map<String, String> getUrlByOwnerCode(String owner, String code) throws NoSuchAlgorithmException, UnsupportedEncodingException, MalformedURLException {
         String key = this.generateKey(owner, code);
         Map<String, String> urlMap = this.getUrl(key, key);
         return urlMap;

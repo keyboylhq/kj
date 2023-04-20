@@ -3,6 +3,7 @@ package com.example.demo.service;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
+import java.net.MalformedURLException;
 import java.util.List;
 import java.util.Map;
 
@@ -11,7 +12,7 @@ public interface RealTimeTraceabilityService {
     /**
      * @return
      */
-    Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException;
+    Map<String, Object> getAllDirectChildComponentKey(String parentComponentKey) throws UnsupportedEncodingException, MalformedURLException;
 
     /**
      * @return
