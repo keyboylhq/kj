@@ -91,7 +91,7 @@ class DemoApplicationTests {
     @Test
     void dd() throws UnsupportedEncodingException {
 
-        Map<String, Object> stringObjectMap = CouchDBExample.binaryTreealgorithm("83a86d7ea0295798b4ad57765a35d36b5e1bc301295f208974d7886da079209b");
-        System.out.println(stringObjectMap);
+//        Map<String, Object> stringObjectMap = CouchDBExample.binaryTreealgorithm("83a86d7ea0295798b4ad57765a35d36b5e1bc301295f208974d7886da079209b");
+//        System.out.println(stringObjectMap);
     }
 }
