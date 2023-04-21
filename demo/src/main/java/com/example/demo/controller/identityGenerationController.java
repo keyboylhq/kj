@@ -54,6 +54,8 @@ public class identityGenerationController {
     public Map<String, Object> getUrl(String key, String chainId) throws IOException {
 //        return identityGenerationService.getUrl(key, chainId);
         return identityGenerationService.getUrlone(key, chainId);
+
+
 //        return identityGenerationService.getUrl(key, chainId);
     }
 
