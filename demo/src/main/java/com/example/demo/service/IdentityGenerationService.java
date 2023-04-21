@@ -48,4 +48,7 @@ public interface IdentityGenerationService {
     IndexDto getIndexData(String key);
 
     Map<String, Object> getChainIdall(String key) throws UnsupportedEncodingException, MalformedURLException;
+
+    Map<String, Object> getUrlone(String key, String chainId) throws UnsupportedEncodingException, MalformedURLException;
+
 }

@@ -5,13 +5,11 @@ import org.ektorp.http.StdHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.support.BasicAuthenticationInterceptor;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +17,6 @@ import org.springframework.web.client.RestTemplate;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.util.*;
-import java.net.URI;
 import java.util.Map;
 import org.ektorp.CouchDbConnector;
 import org.ektorp.CouchDbInstance;
@@ -213,9 +210,45 @@ public Map<String, Object> binaryTreealgorithm(String key) throws MalformedURLEx
 
     /**
      * 主链上查找key所在的子链ID（直接）
-     *
+     * <p>
      * 在子链上查找key详细信息的URL
-     * */
+     */
+
+    public Map<String, Object> geturlsonfunall(String key) throws MalformedURLException {
+        String url = "http://admin:password@106.12.107.132:5984/";
+        String dbName = "child_chain";
+        String viewName = "myDesignDocument/new-view";
+//            String key = "your_key_here";
+
+        // Connect to the CouchDB server
+        CouchDbInstance dbInstance = new StdCouchDbInstance(new StdHttpClient.Builder()
+                .url(url)
+                .build());
+        CouchDbConnector db = new StdCouchDbConnector(dbName, dbInstance);
+
+        // Build the query parameters and options
+        ViewQuery query = new ViewQuery().designDocId("_design/" + viewName.split("/")[0])
+                .viewName(viewName.split("/")[1])
+                .key(key)
+                .includeDocs(true);
+
+        // Query the view and retrieve the document ID
+        ViewResult result = db.queryView(query);
+        try {
+            String id = result.getRows().get(0).getId();
+            // Retrieve the full document and extract the parts object
+            Map<String, Object> doc = db.get(Map.class, id);
+//            Map<String, Object> parts = (Map<String, Object>) doc.get("parts");
+
+            // Print parts data to console
+//                System.out.println("Retrieved parts:");
+//                System.out.println(parts);
+            return doc;
+        } catch (IndexOutOfBoundsException e) {
+//                System.out.println("Error: " + e.getMessage());
+            return null;
+        }
+    }
     public List<String> geturlsonfun(String key) throws UnsupportedEncodingException {
 //        String key = "ac4b5131f73b2bbe42df9f9a56c3a3c88b9f68df14b97541354c306f466f93d6";
 //        String encodedKey = URLEncoder.encode(key, StandardCharsets.UTF_8);

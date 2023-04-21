@@ -5,7 +5,6 @@ import com.example.demo.dto.MainChainDto;
 import com.example.demo.dto.SubChainDto;
 import com.example.demo.service.IdentityGenerationService;
 import com.google.gson.Gson;
-import org.json.JSONArray;
 import org.springframework.stereotype.Service;
 
 import java.io.BufferedReader;
@@ -66,8 +65,16 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
     }
 
     // 功能3:在子链上查找key详细信息的URL
-    @Override
+
+    public Map<String, Object> getUrlone(String key, String chainId) throws  MalformedURLException {
+        CouchDBExample couchDBExampl = new CouchDBExample();
+
+        Map<String, Object> sonUrl = couchDBExampl.geturlsonfunall(key);
+        return sonUrl;
+    }
+        @Override
     public Map<String, String> getUrl(String key, String chainId) throws UnsupportedEncodingException, MalformedURLException {
+
 
         CouchDBExample couchDBExampl = new CouchDBExample();
         Map<String, Object> allurl = couchDBExampl.geturlfun(key);
