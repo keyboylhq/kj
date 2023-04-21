@@ -40,6 +40,11 @@ public class identityGenerationController {
         return identityGenerationService.getChainId(key);
     }
 
+    @GetMapping("/getChainIdall")
+    public Map<String, Object> getChainIdall(String key) throws UnsupportedEncodingException, MalformedURLException {
+        return identityGenerationService.getChainIdall(key);
+    }
+
     /**
      * 在子链上查找key详细信息的url
      *

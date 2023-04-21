@@ -47,6 +47,18 @@ public class IdentityGenerationImpl implements IdentityGenerationService {
 //      直接子件
 //        Map<String, Object> allurl = couchDBExampl.geturlfun(key);
 //        间接子件
+        Map<String, Object> allurl = couchDBExampl.geturlfun(key);
+        return  allurl;
+//        MainChainDto mainChainData = getMainChainData(key);
+//        return mainChainData.getChainId();
+    }
+
+    @Override
+    public Map<String, Object> getChainIdall(String key) throws UnsupportedEncodingException, MalformedURLException {
+        CouchDBExample couchDBExampl = new CouchDBExample();
+//      直接子件
+//        Map<String, Object> allurl = couchDBExampl.geturlfun(key);
+//        间接子件
         Map<String, Object> allurl = couchDBExampl.binaryTreealgorithm(key);
         return  allurl;
 //        MainChainDto mainChainData = getMainChainData(key);

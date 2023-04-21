@@ -158,14 +158,14 @@ public class CouchDBExample {
 
 public Map<String, Object> binaryTreealgorithm(String key) throws MalformedURLException, UnsupportedEncodingException {
     Map<String, Object> allsonparts = new HashMap<String, Object>(); // This map will contain results for each sub-key
-    long startTime = System.currentTimeMillis();
+//    long startTime = System.currentTimeMillis();
 
 // Code to be measured goes here
     Map<String, Object> geturlfun = geturlfun(key); // Get URLs for the main key
-    long endTime = System.currentTimeMillis();
-    long elapsedTime = endTime - startTime;
+//    long endTime = System.currentTimeMillis();
+//    long elapsedTime = endTime - startTime;
 
-    System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
+//    System.out.println("Elapsed time: " + elapsedTime + " milliseconds");
 
 
     // If there are no URLs for the main key, return null
@@ -202,7 +202,7 @@ public Map<String, Object> binaryTreealgorithm(String key) throws MalformedURLEx
                 }
                 // Otherwise, process the URLs for the current subkey using the processSubkeys() method
                 else {
-//                    allsonparts.put(subkey, urls); // Add the current subkey and URLs to the allsonparts map
+                    allsonparts.put(subkey, urls); // Add the current subkey and URLs to the allsonparts map
                     processSubkeys(subkeyUrls, allsonparts);
                 }
             }
